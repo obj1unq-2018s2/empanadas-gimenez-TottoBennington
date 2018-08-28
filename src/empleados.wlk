@@ -22,7 +22,7 @@ object baigorria {
 		if(self.sueldo()>self.totalDeuda()){
 			// si el sueldo es > a la deuda, cobramos y descontamos deuda
 			dinero += self.sueldo() - self.totalDeuda()
-			deuda = 0
+			deuda -= deuda // le quitamos a la deuda lo que pagamos de ella
 		}else{
 			// si la deuda es mayor entonces descontamos sueldo de deuda total
 			deuda -= self.sueldo()
@@ -37,7 +37,12 @@ object baigorria {
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada
 	
 	method gastar(cuanto){
-
+		if(dinero > cuanto){
+			dinero -= cuanto
+		}else{
+			deuda += cuanto - dinero
+			dinero -= dinero
+		}
 	}
 	method totalDeuda(){
 		return deuda

@@ -13,8 +13,39 @@ describe "finanzas Baigorria"{
 		baigorria.totalDinero()
 		assert.equals(0, baigorria.totalDinero())
 	}
-	test "Escenario 2 - 1: Gasta 4000"{
+	test "Escenario 2 Gasta 4000, deuda = 4000, dinero = 0"{
 		baigorria.gastar(4000)
-		assert.equals(baigorria.totalDinero()-4000, baigorria.gastar(4000))
+		assert.equals(4000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+	}
+	test "Escenario 3 gasta 8000, deuda a 12000, dinero = 0"{
+		baigorria.gastar(4000)
+		baigorria.gastar(8000)
+		assert.equals(12000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+	}
+	test "Escenario 4 cobra, deuda = 0 & dinero = 3000"{
+		baigorria.gastar(4000)
+		baigorria.gastar(8000)
+		baigorria.cobrarSueldo()
+		assert.equals(0, baigorria.totalDeuda())
+		assert.equals(3000, baigorria.totalDinero())
+	}
+	test "Escenario 5: Gasta 25000, se queda sin dinero & aumenta la deuda"{
+		baigorria.gastar(4000)
+		baigorria.gastar(8000)
+		baigorria.cobrarSueldo()
+		baigorria.gastar(25000)
+		assert.equals(22000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+	}
+	test "Escenario 6: Cobrar, usar totalidad de dinero en deudas y aun asi quedan 7000 de deuda"{
+		baigorria.gastar(4000)
+		baigorria.gastar(8000)
+		baigorria.cobrarSueldo()
+		baigorria.gastar(25000)
+		baigorria.cobrarSueldo()
+		assert.equals(0, baigorria.totalDinero())
+		assert.equals(7000, baigorria.totalDeuda())
 	}
 }
