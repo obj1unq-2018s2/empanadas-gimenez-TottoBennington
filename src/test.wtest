@@ -6,11 +6,9 @@ describe "finanzas Baigorria"{
 		assert.equals(15000, baigorria.sueldo())
 	}
 	test "Escenario 1 - 2: Deuda en 0"{
-		baigorria.totalDeuda()
 		assert.equals(0, baigorria.totalDeuda())
 	}
 	test "Escenarios 1 - 3: Dinero en 0"{
-		baigorria.totalDinero()
 		assert.equals(0, baigorria.totalDinero())
 	}
 	test "Escenario 2 Gasta 4000, deuda = 4000, dinero = 0"{

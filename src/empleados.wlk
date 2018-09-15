@@ -7,7 +7,7 @@ object gimenez {
 	var dineroTotal = 0
 	method sueldo() { return 15000 }
 	method sueldo(nuevoValor) { sueldo = nuevoValor }
-	method cobrarSueldo() = dineroTotal+=self.sueldo()
+	method cobrarSueldo(){dineroTotal+=self.sueldo()}
 	method totalCobrado() = dineroTotal
 }
 
@@ -22,7 +22,7 @@ object baigorria {
 		if(self.sueldo()>self.totalDeuda()){
 			// si el sueldo es > a la deuda, cobramos y descontamos deuda
 			dinero += self.sueldo() - self.totalDeuda()
-			deuda -= deuda // le quitamos a la deuda lo que pagamos de ella
+			deuda = 0 // le quitamos a la deuda lo que pagamos de ella
 		}else{
 			// si la deuda es mayor entonces descontamos sueldo de deuda total
 			deuda -= self.sueldo()
@@ -41,7 +41,7 @@ object baigorria {
 			dinero -= cuanto
 		}else{
 			deuda += cuanto - dinero
-			dinero -= dinero
+			dinero = 0
 		}
 	}
 	method totalDeuda(){
